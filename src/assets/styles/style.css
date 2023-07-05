@@ -81,6 +81,7 @@ body {
 }
 a {
 	color: #a4a4a4;
+	text-decoration: none;
 	transition: 0.3s ease-in-out;
 }
 a:hover {
@@ -2912,26 +2913,27 @@ textarea:focus {
 	color: #fff;
 }
 .social-link > li:hover > a {
-	background: #fed700 ;
+	opacity: 30%;
 }
 /*Social Link Color Variations*/
 .twitter {
 	background: #40c1df;
 }
-.rss {
-	background: #eb8314;
+.discord {
+	background: #5865F2;
 }
-.google-plus {
-	background: #ed3c32;
+.tiktok {
+	background: black;
 }
 .facebook {
 	background: #3c5b9b;
 }
 .youtube {
-	background: #c72982;
+	background: #FF0000;
 }
-.instagram {
-	background: #c619b8;
+.instagram{
+	background: #d6249f;
+  	background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%,#d6249f 60%,#285AEB 90%);
 }
 /*Footer Newsletter*/
 .footer-newsletter {

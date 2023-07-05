@@ -1,3 +1,4 @@
+import "./assets/js/main.js";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap";
 import { createApp } from "vue";
@@ -15,18 +16,16 @@ import "./assets/styles/slick.css";
 import "./assets/styles/venobox.css";
 
 import { library } from "@fortawesome/fontawesome-svg-core";
-import { fas } from '@fortawesome/free-solid-svg-icons'
+import { fas } from "@fortawesome/free-solid-svg-icons";
 library.add(fas);
-import { fab } from '@fortawesome/free-brands-svg-icons';
+import { fab } from "@fortawesome/free-brands-svg-icons";
 library.add(fab);
-import { far } from '@fortawesome/free-regular-svg-icons';
+import { far } from "@fortawesome/free-regular-svg-icons";
 library.add(far);
 import { dom } from "@fortawesome/fontawesome-svg-core";
 dom.watch();
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 
 import App from "./App.vue";
 
-createApp(App)
-.component('font-awesome-icon', FontAwesomeIcon)
-.mount("#app");
+createApp(App).component("font-awesome-icon", FontAwesomeIcon).mount("#app");
