@@ -67,13 +67,13 @@
 //   /*----------------------------------------*/
 //   /* 03. Li's Sticky Menu Activation
 // /*----------------------------------------*/
-//   $(window).on("scroll", function () {
-//     if ($(this).scrollTop() > 300) {
-//       $(".header-sticky").addClass("sticky");
-//     } else {
-//       $(".header-sticky").removeClass("sticky");
-//     }
-//   });
+window.onscroll = function () {
+  if (window.scrollY > 150) {
+    document.getElementsByClassName("header-sticky")[0].classList.add("sticky");
+  } else {
+    document.getElementsByClassName("header-sticky")[0].classList.remove("sticky");
+  }
+}
 //   /*----------------------------------------*/
 //   /*  04. Nice Select
 // /*----------------------------------------*/
@@ -100,6 +100,21 @@
 //       lazyLoad: true,
 //     });
 //   });
+// document.getElementsByClassName("slider-active")[0].owlCarousel({
+//   loop: true,
+//   margin: 0,
+//   nav: true,
+//   autoplay: true,
+//   items: 1,
+//   autoplayTimeout: 10000,
+//   navText: [
+//     "<i class='fa fa-angle-left'></i>",
+//     "<i class='fa fa-angle-right'></i>",
+//   ],
+//   dots: true,
+//   autoHeight: true,
+//   lazyLoad: true,
+// });
 //   /*----------------------------------------*/
 //   /* 06. Li's Product Activision
 // /*----------------------------------------*/
@@ -582,13 +597,3 @@
 // /*----------------------------------------------------------------------------------------------------*/
 // /*------------------------------------------> The End <-----------------------------------------------*/
 // /*----------------------------------------------------------------------------------------------------*/
-
-/* 03. Li's Sticky Menu Activation
-/*----------------------------------------*/
-window.onscroll = function () {
-  if (window.scrollY > 150) {
-    document.getElementsByClassName("header-sticky")[0].classList.add("sticky");
-  } else {
-    document.getElementsByClassName("header-sticky")[0].classList.remove("sticky");
-  }
-}
