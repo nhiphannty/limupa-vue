@@ -100,21 +100,6 @@ window.onscroll = function () {
 //       lazyLoad: true,
 //     });
 //   });
-// document.getElementsByClassName("slider-active")[0].owlCarousel({
-//   loop: true,
-//   margin: 0,
-//   nav: true,
-//   autoplay: true,
-//   items: 1,
-//   autoplayTimeout: 10000,
-//   navText: [
-//     "<i class='fa fa-angle-left'></i>",
-//     "<i class='fa fa-angle-right'></i>",
-//   ],
-//   dots: true,
-//   autoHeight: true,
-//   lazyLoad: true,
-// });
 //   /*----------------------------------------*/
 //   /* 06. Li's Product Activision
 // /*----------------------------------------*/
