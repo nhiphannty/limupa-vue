@@ -4,9 +4,9 @@
             <div class="row">
                 <div class="col-lg-3">
                     <div class="logo pb-sm-30 pb-xs-30">
-                        <a href="index.html">
+                        <router-link :to="{ name: routeName.Home }">
                             <img src="../../../assets/images/menu/logo/1.jpg" alt="">
-                        </a>
+                        </router-link>
                     </div>
                 </div>
                 <div class="col-lg-9 pl-0 ml-sm-15 ml-xs-15">
@@ -29,7 +29,7 @@
                     <div class="header-middle-right">
                         <ul class="hm-menu">
                             <li class="hm-wishlist">
-                                <a href="wishlist.html">
+                                <a href="#">
                                     <span class="cart-item-count wishlist-item-count">0</span>
                                     <font-awesome-icon icon="fa fa-heart"></font-awesome-icon>
                                 </a>
@@ -46,25 +46,17 @@
                                 <div class="minicart">
                                     <ul class="minicart-product-list">
                                         <li>
-                                            <a href="single-product.html" class="minicart-product-image">
-                                                <img src="../../../assets/images/product/small-size/5.jpg"
-                                                    alt="cart products">
-                                            </a>
-                                            <div class="minicart-product-details">
-                                                <h6><a href="single-product.html">Aenean eu tristique</a></h6>
-                                                <span>£40 x 1</span>
-                                            </div>
-                                            <button class="close" title="Remove">
-                                                <font-awesome-icon icon="fa fa-close"></font-awesome-icon>
-                                            </button>
-                                        </li>
-                                        <li>
-                                            <a href="single-product.html" class="minicart-product-image">
+                                            <router-link :to="{ name: routeName.ProductCatalog, params: { id: 1 } }"
+                                                class="minicart-product-image">
                                                 <img src="../../../assets/images/product/small-size/6.jpg"
                                                     alt="cart products">
-                                            </a>
+                                            </router-link>
                                             <div class="minicart-product-details">
-                                                <h6><a href="single-product.html">Aenean eu tristique</a></h6>
+                                                <h6>
+                                                    <router-link :to="{ name: routeName.ProductCatalog, params: { id: 1 } }">
+                                                        Aenean eu tristique
+                                                    </router-link>
+                                                </h6>
                                                 <span>£40 x 1</span>
                                             </div>
                                             <button class="close" title="Remove">
@@ -74,10 +66,11 @@
                                     </ul>
                                     <p class="minicart-total">SUBTOTAL: <span>£80.00</span></p>
                                     <div class="minicart-button">
-                                        <a href="shopping-cart.html" class="li-button li-button-fullwidth li-button-dark">
+                                        <router-link :to="{ name: routeName.ShoppingCart }"
+                                            class="li-button li-button-fullwidth li-button-dark">
                                             <span>View Full Cart</span>
-                                        </a>
-                                        <a href="checkout.html" class="li-button li-button-fullwidth">
+                                        </router-link>
+                                        <a href="#" class="li-button li-button-fullwidth">
                                             <span>Checkout</span>
                                         </a>
                                     </div>
@@ -90,3 +83,7 @@
         </div>
     </div>
 </template>
+
+<script setup lang="ts">
+import { routeName } from '../../../constants/routers';
+</script>

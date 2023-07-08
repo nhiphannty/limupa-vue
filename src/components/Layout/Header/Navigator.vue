@@ -6,10 +6,18 @@
                     <div class="hb-menu">
                         <nav>
                             <ul>
-                                <li><a href="about-us.html">Home</a></li>
-                                <li><a href="contact.html">Shop</a></li>
-                                <li><a href="shop-left-sidebar.html">About us</a></li>
-                                <li><a href="shop-left-sidebar.html">Contact</a></li>
+                                <li>
+                                    <router-link :to="{ name: routeName.Home }">Home</router-link>
+                                </li>
+                                <li>
+                                    <router-link :to="{ name: routeName.Shop }">Shop</router-link>
+                                </li>
+                                <li>
+                                    <a href="#">About us</a>
+                                </li>
+                                <li>
+                                    <a href="#">Contact</a>
+                                </li>
                             </ul>
                         </nav>
                     </div>
@@ -18,3 +26,7 @@
         </div>
     </div>
 </template>
+
+<script setup lang="ts">
+import { routeName } from '../../../constants/routers';
+</script>

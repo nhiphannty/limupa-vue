@@ -27,5 +27,6 @@ dom.watch();
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 
 import App from "./App.vue";
+import router from "./constants/routers.js";
 
-createApp(App).component("font-awesome-icon", FontAwesomeIcon).mount("#app");
+createApp(App).component("font-awesome-icon", FontAwesomeIcon).use(router).mount("#app");

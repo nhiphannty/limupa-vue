@@ -19,9 +19,9 @@
                                 </div>
                                 <div class="setting ht-setting">
                                     <ul class="ht-setting-list">
-                                        <li><a href="login-register.html">My Account</a></li>
-                                        <li><a href="checkout.html">Checkout</a></li>
-                                        <li><a href="login-register.html">Sign In</a></li>
+                                        <li><a href="#">My Account</a></li>
+                                        <li><a href="#">Checkout</a></li>
+                                        <li><router-link :to="{ name: routeName.LoginRegister }">Sign In</router-link></li>
                                     </ul>
                                 </div>
                             </li>
@@ -61,3 +61,7 @@
         </div>
     </div>
 </template>
+
+<script setup lang="ts">
+import { routeName } from '../../../constants/routers';
+</script>
