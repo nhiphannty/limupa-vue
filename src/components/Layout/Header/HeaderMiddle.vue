@@ -35,7 +35,7 @@
                                 </a>
                             </li>
                             <li class="hm-minicart">
-                                <div class="hm-minicart-trigger">
+                                <div class="hm-minicart-trigger" @click="isShowMinicart = !isShowMinicart">
                                     <font-awesome-icon class="item-icon" :icon="['fas', 'basket-shopping']" />
                                     <span class="item-text">£80.00
                                         <span class="cart-item-count">2</span>
@@ -43,7 +43,7 @@
                                     <font-awesome-icon class="item-angel-down" :icon="['fas', 'angle-down']" />
                                 </div>
                                 <span></span>
-                                <div class="minicart">
+                                <div class="minicart" v-if="isShowMinicart">
                                     <ul class="minicart-product-list">
                                         <li>
                                             <router-link :to="{ name: routeName.ProductCatalog, params: { id: 1 } }"
@@ -53,7 +53,8 @@
                                             </router-link>
                                             <div class="minicart-product-details">
                                                 <h6>
-                                                    <router-link :to="{ name: routeName.ProductCatalog, params: { id: 1 } }">
+                                                    <router-link
+                                                        :to="{ name: routeName.ProductCatalog, params: { id: 1 } }">
                                                         Aenean eu tristique
                                                     </router-link>
                                                 </h6>
@@ -85,5 +86,8 @@
 </template>
 
 <script setup lang="ts">
+import { ref } from 'vue';
 import { routeName } from '../../../constants/routers';
+
+const isShowMinicart = ref(false);
 </script>

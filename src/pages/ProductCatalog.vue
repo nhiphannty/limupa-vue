@@ -35,7 +35,6 @@
                                     <ul class="rating rating-with-review-item">
                                         <Rating :rating="4" />
                                         <li class="review-item">
-
                                             <a href="#">
                                                 <font-awesome-icon :icon="['fas', 'pen']" /> Read Review</a>
                                         </li>
@@ -62,11 +61,11 @@
                                         <div class="quantity">
                                             <label>Quantity</label>
                                             <div class="cart-plus-minus">
-                                                <input class="cart-plus-minus-box" value="1" type="text">
-                                                <div class="dec qtybutton">
+                                                <input class="cart-plus-minus-box" :value="quantity" type="text">
+                                                <div class="dec qtybutton" @click="{ if (quantity > 1) quantity--; }">
                                                     <font-awesome-icon :icon="['fas', 'angle-down']" />
                                                 </div>
-                                                <div class="inc qtybutton">
+                                                <div class="inc qtybutton" @click="quantity++">
                                                     <font-awesome-icon :icon="['fas', 'angle-up']" />
                                                 </div>
                                             </div>
@@ -209,7 +208,8 @@
                                                 <div class="modal-inner-area row">
                                                     <div class="col-lg-6">
                                                         <div class="li-review-product">
-                                                            <img src="../assets/images/product/large-size/3.jpg" alt="Li's Product">
+                                                            <img src="../assets/images/product/large-size/3.jpg"
+                                                                alt="Li's Product">
                                                             <div class="li-review-product-desc">
                                                                 <p class="li-product-name">Today is a good day Framed poster
                                                                 </p>
@@ -322,4 +322,6 @@ const tabs = reactive([
     }
 ]);
 const activeTab = ref(tabs[0].Key);
+
+const quantity = ref(1);
 </script>

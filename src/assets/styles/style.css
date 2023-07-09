@@ -1475,7 +1475,6 @@ textarea:focus {
     right: 0;
     top: 100%;
     z-index: 9;
-    display: none;
 }
 .setting,
 .currency,
@@ -1670,7 +1669,7 @@ textarea:focus {
     right: 0;
     top: 100%;
     z-index: 9;
-    display: none;
+    /* display: none; */
     border: 1px solid #e5e5e5;
     padding: 20px;
     width: 290px;

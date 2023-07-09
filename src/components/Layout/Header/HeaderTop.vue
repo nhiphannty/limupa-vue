@@ -13,11 +13,11 @@
                     <div class="header-top-right">
                         <ul class="ht-menu">
                             <li>
-                                <div class="ht-setting-trigger">
+                                <div class="ht-setting-trigger" @click="isShowSettings = !isShowSettings">
                                     <span>Setting</span>
                                     <font-awesome-icon class="item-angel-down" :icon="['fas', 'angle-down']" />
                                 </div>
-                                <div class="setting ht-setting">
+                                <div class="setting ht-setting" v-if="isShowSettings">
                                     <ul class="ht-setting-list">
                                         <li><a href="#">My Account</a></li>
                                         <li><a href="#">Checkout</a></li>
@@ -26,12 +26,14 @@
                                 </div>
                             </li>
                             <li>
-                                <span class="currency-selector-wrapper">Currency :</span>
-                                <div class="ht-currency-trigger">
+                                <span class="currency-selector-wrapper">
+                                    Currency :
+                                </span>
+                                <div class="ht-currency-trigger" @click="isShowCurrency = !isShowCurrency">
                                     <span>USD $</span>
                                     <font-awesome-icon class="item-angel-down" :icon="['fas', 'angle-down']" />
                                 </div>
-                                <div class="currency ht-currency">
+                                <div class="currency ht-currency" v-if="isShowCurrency">
                                     <ul class="ht-setting-list">
                                         <li><a href="#">EUR €</a></li>
                                         <li class="active"><a href="#">USD $</a></li>
@@ -39,12 +41,14 @@
                                 </div>
                             </li>
                             <li>
-                                <span class="language-selector-wrapper">Language :</span>
-                                <div class="ht-language-trigger">
+                                <span class="language-selector-wrapper">
+                                    Language :
+                                </span>
+                                <div class="ht-language-trigger" @click="isShowLanguage = !isShowLanguage">
                                     <span>English</span>
                                     <font-awesome-icon class="item-angel-down" :icon="['fas', 'angle-down']" />
                                 </div>
-                                <div class="language ht-language">
+                                <div class="language ht-language" v-if="isShowLanguage">
                                     <ul class="ht-setting-list">
                                         <li class="active"><a href="#"><img
                                                     src="../../../assets/images/menu/flag-icon/1.jpg" alt="">English</a>
@@ -63,5 +67,10 @@
 </template>
 
 <script setup lang="ts">
+import { ref } from 'vue';
 import { routeName } from '../../../constants/routers';
+
+const isShowSettings = ref(false);
+const isShowCurrency = ref(false);
+const isShowLanguage = ref(false);
 </script>
