@@ -23,9 +23,10 @@
                                     <div class="col-lg-12 product-bottom-padding">
                                         <div class="single-product-wrap">
                                             <div class="product-image">
-                                                <a href="#">
+                                                <router-link
+                                                    :to="{ name: routeName.ProductCatalog, params: { id: product.Id } }">
                                                     <img :src="product.Image" alt="Li's Product Image">
-                                                </a>
+                                                </router-link>
                                                 <span class="sticker">New</span>
                                             </div>
                                             <div class="product_desc">
@@ -36,36 +37,17 @@
                                                         </h5>
                                                         <div class="rating-box">
                                                             <ul class="rating">
-                                                                <li>
-                                                                    <font-awesome-icon :icon="[product.Rating != undefined && product.Rating >= 1
-                                                                        ? 'fas' : 'far',
-                                                                        'star']" />
-                                                                </li>
-                                                                <li>
-                                                                    <font-awesome-icon :icon="[product.Rating != undefined && product.Rating >= 2
-                                                                        ? 'fas' : 'far',
-                                                                        'star']" />
-                                                                </li>
-                                                                <li>
-                                                                    <font-awesome-icon :icon="[product.Rating != undefined && product.Rating >= 3
-                                                                        ? 'fas' : 'far',
-                                                                        'star']" />
-                                                                </li>
-                                                                <li>
-                                                                    <font-awesome-icon :icon="[product.Rating != undefined && product.Rating >= 4
-                                                                        ? 'fas' : 'far',
-                                                                        'star']" />
-                                                                </li>
-                                                                <li>
-                                                                    <font-awesome-icon :icon="[product.Rating != undefined && product.Rating == 5
-                                                                        ? 'fas' : 'far',
-                                                                        'star']" />
-                                                                </li>
+                                                                <Rating :rating="product.Rating ?? 0" />
                                                             </ul>
                                                         </div>
                                                     </div>
-                                                    <h4><a class="product_name" href="#">{{ product.Name
-                                                    }}</a></h4>
+                                                    <h4>
+                                                        <router-link
+                                                            :to="{ name: routeName.ProductCatalog, params: { id: product.Id } }"
+                                                            class="product_name">
+                                                            {{ product.Name }}
+                                                        </router-link>
+                                                    </h4>
                                                     <div class="price-box">
                                                         <span class="new-price">${{ product.Price }}</span>
                                                     </div>
@@ -108,6 +90,8 @@ import IProduct from "../interfaces/IProduct";
 import 'vue3-carousel/dist/carousel.css';
 import { Carousel, Slide, Navigation } from 'vue3-carousel';
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
+import { routeName } from "../constants/routers";
+import Rating from "./Rating.vue";
 
 export interface ITab {
     Key: number,

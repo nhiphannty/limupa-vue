@@ -2340,11 +2340,9 @@ textarea:focus {
     position: relative;
 }
 .review-item::before {
-    content: "\f040";
     position: absolute;
     left: 5px;
     top: 0;
-    font-family: fontawesome;
     color: #7a7a7a;
     font-size: 13px;
     transition: all 0.3s ease-in-out;
@@ -5247,6 +5245,7 @@ span.required {
     height: 25px;
     line-height: 25px;
     text-align: center;
+    margin-left: 5px;
 }
 @media only screen and (max-width: 479px) {
     .product-social-sharing > ul > li {

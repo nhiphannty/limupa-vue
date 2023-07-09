@@ -8,9 +8,9 @@ import LoginRegister from "../pages/LoginRegister.vue";
 export const routeName = {
     Home: "Home",
     Shop: "Shop",
-    ProductCatalog: "ProductCatalog",
-    ShoppingCart: "ShoppingCart",
-    LoginRegister: "LoginRegister",
+    ProductCatalog: "Product Catalog",
+    ShoppingCart: "Shopping Cart",
+    LoginRegister: "Login | Register",
 };
 
 const routes = [
@@ -44,6 +44,9 @@ const routes = [
 const router = createRouter({
     history: createWebHistory(),
     routes,
+    scrollBehavior() {
+        return { top: 0 };
+    }
 });
 
 export default router;
