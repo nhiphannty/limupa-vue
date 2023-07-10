@@ -2,7 +2,7 @@ const APIs = {
     Product: {
         All: "/products",
         ProductsLimit: (limit: number) => `/products?limit=${limit}`,
-        SingleProduct: (id: number) => `products/${id}`,
+        SingleProduct: (id: number) => `/products/${id}`,
         ByCategory: (category: string) => `/products/category/${category}`,
     },
     Category: {

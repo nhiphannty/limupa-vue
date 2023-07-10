@@ -5,35 +5,24 @@
             <div class="container">
                 <div class="row single-product-area">
                     <div class="col-lg-5 col-md-6">
-                        <carousel :items-to-show="1" :snap-align="'start'">
-                            <slide v-for="image in 6" :key="image">
-                                <div class="product-details-left">
-                                    <div class="product-details-images slider-navigation-1">
-                                        <div class="lg-image">
-                                            <a class="popup-img venobox vbox-item"
-                                                :href="`../assets/images/product/large-size/${image}.jpg`"
-                                                data-gall="myGallery">
-                                                <img :src="`../src/assets/images/product/large-size/${image}.jpg`"
-                                                    alt="product image">
-                                            </a>
-                                        </div>
-                                    </div>
+                        <div class="product-details-left">
+                            <div class="product-details-images slider-navigation-1">
+                                <div class="lg-image">
+                                    <a class="popup-img venobox vbox-item" :href="product.image" data-gall="myGallery">
+                                        <img :src="product.image" alt="product image">
+                                    </a>
                                 </div>
-                            </slide>
-                            <template #addons>
-                                <navigation />
-                                <pagination />
-                            </template>
-                        </carousel>
+                            </div>
+                        </div>
                     </div>
 
                     <div class="col-lg-7 col-md-6">
                         <div class="product-details-view-content pt-60">
                             <div class="product-info">
-                                <h2>Today is a good day Framed poster</h2>
+                                <h2>{{ product.title }}</h2>
                                 <div class="rating-box pt-20">
                                     <ul class="rating rating-with-review-item">
-                                        <Rating :rating="4" />
+                                        <Rating :rating="product.rating.rate" />
                                         <li class="review-item">
                                             <a href="#">
                                                 <font-awesome-icon :icon="['fas', 'pen']" /> Read Review</a>
@@ -45,15 +34,11 @@
                                     </ul>
                                 </div>
                                 <div class="price-box pt-20">
-                                    <span class="new-price new-price-2">$57.98</span>
+                                    <span class="new-price new-price-2">${{ product.price }}</span>
                                 </div>
                                 <div class="product-desc">
                                     <p>
-                                        <span>100% cotton double printed dress. Black and white striped top and orange high
-                                            waisted skater skirt bottom. Lorem ipsum dolor sit amet, consectetur adipisicing
-                                            elit. quibusdam corporis, earum facilis et nostrum dolorum accusamus similique
-                                            eveniet quia pariatur.
-                                        </span>
+                                        <span>{{ product.description }}</span>
                                     </p>
                                 </div>
                                 <div class="single-add-to-cart">
@@ -61,7 +46,7 @@
                                         <div class="quantity">
                                             <label>Quantity</label>
                                             <div class="cart-plus-minus">
-                                                <input class="cart-plus-minus-box" :value="quantity" type="text">
+                                                <input class="cart-plus-minus-box" type="text" v-model="quantity">
                                                 <div class="dec qtybutton" @click="{ if (quantity > 1) quantity--; }">
                                                     <font-awesome-icon :icon="['fas', 'angle-down']" />
                                                 </div>
@@ -164,15 +149,13 @@
                 <div class="tab-content">
                     <div id="description" class="tab-pane active show" :hidden="activeTab != tabs[0].Key">
                         <div class="product-description">
-                            <span>The best is yet to come! Give your walls a voice with a framed poster. This aesthethic,
-                                optimistic poster will look great in your desk or in an open-space office. Painted wooden
-                                frame with passe-partout for more depth.</span>
+                            <span>{{ product.description }}</span>
                         </div>
                     </div>
                     <div id="product-details" class="tab-pane active show" :hidden="activeTab != tabs[1].Key">
                         <div class="product-details-manufacturer">
                             <a href="#">
-                                <img src="../assets/images/product-details/1.jpg" alt="Product Manufacturer Image">
+                                <img :src="product.image" alt="Product Manufacturer Image">
                             </a>
                             <p><span>Reference</span> demo_7</p>
                             <p><span>Reference</span> demo_7</p>
@@ -184,7 +167,7 @@
                                 <div class="comment-review">
                                     <span>Grade</span>
                                     <ul class="rating">
-                                        <Rating :rating="3" />
+                                        <Rating :rating="product.rating.rate" />
                                     </ul>
                                 </div>
                                 <div class="comment-author-infos pt-25">
@@ -199,94 +182,6 @@
                                     <a class="review-links" href="#" data-toggle="modal" data-target="#mymodal">Write Your
                                         Review!</a>
                                 </div>
-                                <!-- Begin Quick View | Modal Area -->
-                                <div class="modal fade modal-wrapper" id="mymodal">
-                                    <div class="modal-dialog modal-dialog-centered" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-body">
-                                                <h3 class="review-page-title">Write Your Review</h3>
-                                                <div class="modal-inner-area row">
-                                                    <div class="col-lg-6">
-                                                        <div class="li-review-product">
-                                                            <img src="../assets/images/product/large-size/3.jpg"
-                                                                alt="Li's Product">
-                                                            <div class="li-review-product-desc">
-                                                                <p class="li-product-name">Today is a good day Framed poster
-                                                                </p>
-                                                                <p>
-                                                                    <span>Beach Camera Exclusive Bundle - Includes Two
-                                                                        Samsung Radiant 360 R3 Wi-Fi Bluetooth Speakers.
-                                                                        Fill The Entire Room With Exquisite Sound via Ring
-                                                                        Radiator Technology. Stream And Control R3 Speakers
-                                                                        Wirelessly With Your Smartphone. Sophisticated,
-                                                                        Modern Design </span>
-                                                                </p>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-lg-6">
-                                                        <div class="li-review-content">
-                                                            <!-- Begin Feedback Area -->
-                                                            <div class="feedback-area">
-                                                                <div class="feedback">
-                                                                    <h3 class="feedback-title">Our Feedback</h3>
-                                                                    <form action="#">
-                                                                        <p class="your-opinion">
-                                                                            <label>Your Rating</label>
-                                                                            <span>
-                                                                                <select class="star-rating">
-                                                                                    <option value="1">1</option>
-                                                                                    <option value="2">2</option>
-                                                                                    <option value="3">3</option>
-                                                                                    <option value="4">4</option>
-                                                                                    <option value="5">5</option>
-                                                                                </select>
-                                                                            </span>
-                                                                        </p>
-                                                                        <p class="feedback-form">
-                                                                            <label for="feedback">Your Review</label>
-                                                                            <textarea id="feedback" name="comment" cols="45"
-                                                                                rows="8" aria-required="true"></textarea>
-                                                                        </p>
-                                                                        <div class="feedback-input">
-                                                                            <p class="feedback-form-author">
-                                                                                <label for="author">Name<span
-                                                                                        class="required">*</span>
-                                                                                </label>
-                                                                                <input id="author" name="author" value=""
-                                                                                    size="30" aria-required="true"
-                                                                                    type="text">
-                                                                            </p>
-                                                                            <p
-                                                                                class="feedback-form-author feedback-form-email">
-                                                                                <label for="email">Email<span
-                                                                                        class="required">*</span>
-                                                                                </label>
-                                                                                <input id="email" name="email" value=""
-                                                                                    size="30" aria-required="true"
-                                                                                    type="text">
-                                                                                <span class="required"><sub>*</sub> Required
-                                                                                    fields</span>
-                                                                            </p>
-                                                                            <div class="feedback-btn pb-15">
-                                                                                <a href="#" class="close"
-                                                                                    data-dismiss="modal"
-                                                                                    aria-label="Close">Close</a>
-                                                                                <a href="#">Submit</a>
-                                                                            </div>
-                                                                        </div>
-                                                                    </form>
-                                                                </div>
-                                                            </div>
-                                                            <!-- Feedback Area End Here -->
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- Quick View | Modal Area End Here -->
                             </div>
                         </div>
                     </div>
@@ -296,32 +191,56 @@
     </Layout>
 </template>
 
-<script setup lang="ts">
+<script lang="ts">
 import BreadCrumb from '../components/BreadCrumb.vue';
 import Layout from '../components/Layout/Layout.vue';
 import 'vue3-carousel/dist/carousel.css';
 import { Carousel, Slide, Navigation, Pagination } from 'vue3-carousel';
 import Rating from '../components/Rating.vue';
 import { reactive, ref } from 'vue';
+import { useRoute } from 'vue-router';
+import useProduct from '../composables/useProduct';
 
-const tabs = reactive([
-    {
-        Key: 1,
-        Title: "Description",
-        Content: ""
+export default {
+    components: {
+        Layout,
+        BreadCrumb,
+        Rating,
+        Carousel,
+        Slide,
+        Navigation,
+        Pagination
     },
-    {
-        Key: 2,
-        Title: "Product Details",
-        Content: ""
-    },
-    {
-        Key: 3,
-        Title: "Reviews",
-        Content: ""
+    async setup() {
+        const tabs = reactive([
+            {
+                Key: 1,
+                Title: "Description",
+                Content: ""
+            },
+            {
+                Key: 2,
+                Title: "Product Details",
+                Content: ""
+            },
+            {
+                Key: 3,
+                Title: "Reviews",
+                Content: ""
+            }
+        ]);
+        const activeTab = ref(tabs[0].Key);
+        const quantity = ref(1);
+
+        const router = useRoute();
+        const product = await useProduct(parseInt(router.params.id.toString()));
+
+        return {
+            tabs,
+            activeTab,
+            quantity,
+            product
+        }
     }
-]);
-const activeTab = ref(tabs[0].Key);
-
-const quantity = ref(1);
+}
 </script>
