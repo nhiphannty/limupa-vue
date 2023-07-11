@@ -8,6 +8,10 @@ const APIs = {
     Category: {
         Categories: "/products/categories",
     },
+    Auth: {
+        Login: "/auth/login",
+        Register: "/users",
+    },
 };
 
 export default APIs;

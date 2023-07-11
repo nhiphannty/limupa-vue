@@ -3,7 +3,7 @@ import Home from "../pages/Home.vue";
 import Shop from "../pages/Shop.vue";
 import ProductCatalog from "../pages/ProductCatalog.vue";
 import ShoppingCart from "../pages/ShoppingCart.vue";
-import LoginRegister from "../pages/LoginRegister.vue";
+import LoginRegister from "../pages/LoginRegister/LoginRegister.vue";
 
 export const routeName = {
     Home: "Home",
@@ -46,7 +46,7 @@ const router = createRouter({
     routes,
     scrollBehavior() {
         return { top: 0 };
-    }
+    },
 });
 
 export default router;

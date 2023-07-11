@@ -8,7 +8,7 @@
                         <div class="product-details-left">
                             <div class="product-details-images slider-navigation-1">
                                 <div class="lg-image">
-                                    <a class="popup-img venobox vbox-item" :href="product.image" data-gall="myGallery">
+                                    <a class="popup-img venobox vbox-item" :href="product.image" target="_blank" data-gall="myGallery">
                                         <img :src="product.image" alt="product image">
                                     </a>
                                 </div>

@@ -110,6 +110,10 @@ input {
 button:focus {
     outline: none;
 }
+button:disabled,
+button:disabled:hover {
+    background-color: #888;
+}
 h1,
 h2,
 h3,
@@ -5628,6 +5632,14 @@ span.required {
 
 .product-bottom-padding {
     padding-bottom: 80px;
+}
+
+.error-msg {
+    color: #e80f0f;
+}
+
+.input-errors {
+    padding-bottom: 10px;
 }
 
 /*----------------------------------------------------------------------------------------------------*/
