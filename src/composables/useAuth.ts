@@ -1,6 +1,7 @@
 import { reactive } from "vue";
 import APIs from "../constants/APIInfomation";
 import useFetch from "./useFetch";
+import IUser from "../interfaces/IUser";
 
 export async function login(username: string, password: string) {
     const { response, error, fetchData } = useFetch(APIs.Auth.Login, {
@@ -16,10 +17,13 @@ export async function login(username: string, password: string) {
 
     await fetchData();
 
-    const token = reactive(response.value);
+    const user: IUser = reactive({
+        Id: 0,
+        Username: error.value.isError ? "" : username,
+        Token: response.value as string,
+    });
     return {
-        isAuth: !error.value.isError,
-        token: token,
+        user,
     };
 }
 

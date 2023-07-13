@@ -29,12 +29,12 @@
 <script lang="ts">
 import { computed, reactive, ref } from 'vue';
 import Input from '../../components/Input.vue';
-import { login } from '../../composables/useAuth';
 import { useVuelidate } from '@vuelidate/core';
 import { helpers, required } from '@vuelidate/validators';
 import CommonErrorMessages from "../../constants/CommonErrorMessages";
 import { routeName } from '../../constants/routers';
 import router from "../../constants/routers";
+import { useAuthStore } from "../../stores/useAuthStore.ts";
 
 export default {
     components: {
@@ -55,8 +55,8 @@ export default {
 
         const v$ = useVuelidate(rules, model);
 
+        const authStore = useAuthStore();
         const isAuthenticated = ref();
-
         const redirectCountDown = ref(3);
         const authenticateHandler = function () {
             if (redirectCountDown.value > 0) {
@@ -65,7 +65,7 @@ export default {
                     authenticateHandler();
                 }, 1000);
             } else {
-                router.push({ name: routeName.Home })
+                router.push(authStore.returnUrl || { name: routeName.Home });
             }
         }
 
@@ -76,10 +76,9 @@ export default {
                 context.emit("updateLoading", false); return
             };
 
-            const { isAuth, token } = await login(model.username, model.password);
-            isAuthenticated.value = isAuth;
-            if (isAuth) {
-                console.log(token);
+            await authStore.logIn(model.username, model.password);
+            isAuthenticated.value = authStore.user != null;
+            if (isAuthenticated.value === true) {
                 authenticateHandler();
             } else {
                 context.emit("updateLoading", false);

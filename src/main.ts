@@ -28,5 +28,8 @@ import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 
 import App from "./App.vue";
 import router from "./constants/routers.js";
+import { createPinia } from "pinia";
 
-createApp(App).component("font-awesome-icon", FontAwesomeIcon).use(router).mount("#app");
+const pinia = createPinia();
+
+createApp(App).component("font-awesome-icon", FontAwesomeIcon).use(router).use(pinia).mount("#app");

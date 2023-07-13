@@ -19,9 +19,12 @@
                                 </div>
                                 <div class="setting ht-setting" v-if="isShowSettings">
                                     <ul class="ht-setting-list">
-                                        <li><a href="#">My Account</a></li>
-                                        <li><a href="#">Checkout</a></li>
-                                        <li><router-link :to="{ name: routeName.LoginRegister }">Sign In</router-link></li>
+                                        <li><router-link :to="{ name: routeName.MyAccount }">My Account</router-link></li>
+                                        <!-- <li><a href="#">Checkout</a></li> -->
+                                        <li v-if="!isAuth">
+                                            <router-link :to="{ name: routeName.LoginRegister }">Log In</router-link>
+                                        </li>
+                                        <li v-else><a href="#" @click="authStore.logOut()">Log Out</a></li>
                                     </ul>
                                 </div>
                             </li>
@@ -69,8 +72,12 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import { routeName } from '../../../constants/routers';
+import { useAuthStore } from '../../../stores/useAuthStore';
 
 const isShowSettings = ref(false);
 const isShowCurrency = ref(false);
 const isShowLanguage = ref(false);
+
+const authStore = useAuthStore();
+const isAuth = ref(authStore.user != null);
 </script>
