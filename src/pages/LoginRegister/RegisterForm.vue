@@ -26,7 +26,7 @@
                         <button class="register-button mt-0" :disabled="$props.isLoading">Register</button>
                     </div>
                     <div class="col-md-12 mt-20" v-if="isAuthenticated">
-                        Login successfully. Redirect in {{ redirectCountDown }}...
+                        Register successfully. Redirect in {{ redirectCountDown }}...
                     </div>
                 </div>
             </div>
@@ -36,11 +36,11 @@
 <script lang="ts">
 import { computed, reactive, ref } from 'vue';
 import Input from '../../components/Input.vue';
-import { register } from '../../composables/useAuth';
 import { useVuelidate } from '@vuelidate/core';
 import { helpers, required, sameAs } from '@vuelidate/validators';
 import CommonErrorMessages from "../../constants/CommonErrorMessages";
 import router, { routeName } from '../../constants/routers';
+import { useAuthStore } from '../../stores/useAuthStore';
 
 export default {
     components: {
@@ -68,6 +68,8 @@ export default {
 
         const v$ = useVuelidate(rules, model);
 
+        const authStore = useAuthStore();
+        const isAuthenticated = ref();
         const redirectCountDown = ref(3);
         const authenticateHandler = function () {
             if (redirectCountDown.value > 0) {
@@ -80,8 +82,6 @@ export default {
             }
         }
 
-        const isAuthenticated = ref();
-
         const submit = async function () {
             context.emit("updateLoading", true);
             const isFormCorrect = await v$.value.$validate();
@@ -89,10 +89,9 @@ export default {
                 context.emit("updateLoading", false); return
             };
 
-            const { isAuth, newId } = await register(model.firstName, model.lastName, model.username, model.password);
-            isAuthenticated.value = isAuth;
-            if (isAuth) {
-                console.log(newId);
+            await authStore.register(model.firstName, model.lastName, model.username, model.password);
+            isAuthenticated.value = authStore.user != null;
+            if (isAuthenticated.value === true) {
                 authenticateHandler();
             } else {
                 context.emit("updateLoading", false);

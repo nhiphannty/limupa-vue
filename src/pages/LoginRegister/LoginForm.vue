@@ -19,7 +19,7 @@
                         <button class="register-button mt-0" :disabled="$props.isLoading">Login</button>
                     </div>
                     <div class="col-md-12 mt-20" v-if="isAuthenticated">
-                        Login successfully. Redirect in {{ redirectCountDown }}...
+                        Log in successfully. Redirect in {{ redirectCountDown }}...
                     </div>
                 </div>
             </div>

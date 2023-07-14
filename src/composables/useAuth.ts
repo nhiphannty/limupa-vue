@@ -19,10 +19,11 @@ export async function login(username: string, password: string) {
 
     const user: IUser = reactive({
         Id: 0,
-        Username: error.value.isError ? "" : username,
-        Token: response.value as string,
+        Username: username,
+        Token: (response.value as { token: string }).token,
     });
     return {
+        isSuccess: !error.value.isError,
         user,
     };
 }
@@ -48,9 +49,10 @@ export async function register(
 
     await fetchData();
 
-    const newId = reactive(response.value);
+    const user = reactive(response.value as IUser);
+    user.Username = username;
     return {
-        isAuth: !error.value.isError,
-        newId,
+        isSuccess: !error.value.isError,
+        user,
     };
 }

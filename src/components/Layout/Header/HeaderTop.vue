@@ -20,11 +20,11 @@
                                 <div class="setting ht-setting" v-if="isShowSettings">
                                     <ul class="ht-setting-list">
                                         <li><router-link :to="{ name: routeName.MyAccount }">My Account</router-link></li>
-                                        <!-- <li><a href="#">Checkout</a></li> -->
-                                        <li v-if="!isAuth">
+                                        <li><router-link :to="{ name: routeName.Checkout }">Checkout</router-link></li>
+                                        <li v-if="!isAuth.value">
                                             <router-link :to="{ name: routeName.LoginRegister }">Log In</router-link>
                                         </li>
-                                        <li v-else><a href="#" @click="authStore.logOut()">Log Out</a></li>
+                                        <li v-else><a href="#" @click="logOut">Log Out</a></li>
                                     </ul>
                                 </div>
                             </li>
@@ -70,7 +70,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
+import { computed, ref } from 'vue';
 import { routeName } from '../../../constants/routers';
 import { useAuthStore } from '../../../stores/useAuthStore';
 
@@ -79,5 +79,11 @@ const isShowCurrency = ref(false);
 const isShowLanguage = ref(false);
 
 const authStore = useAuthStore();
-const isAuth = ref(authStore.user != null);
+const isAuth = computed(() => ref(authStore.user != null));
+const logOut = function () {
+    authStore.logOut();
+    setTimeout(() => {
+        isShowSettings.value = !isShowSettings.value;
+    }, 500)
+}
 </script>

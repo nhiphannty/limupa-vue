@@ -5,6 +5,7 @@ import ProductCatalog from "../pages/ProductCatalog.vue";
 import ShoppingCart from "../pages/ShoppingCart.vue";
 import LoginRegister from "../pages/LoginRegister/LoginRegister.vue";
 import MyAccount from "../pages/MyAccount.vue";
+import Checkout from "../pages/Checkout.vue";
 import { useAuthStore } from "../stores/useAuthStore";
 
 export const routeName = {
@@ -14,6 +15,7 @@ export const routeName = {
     ShoppingCart: "Shopping Cart",
     LoginRegister: "Login | Register",
     MyAccount: "My Account",
+    Checkout: "Checkout",
 };
 
 const routes = [
@@ -51,6 +53,12 @@ const routes = [
         path: "/myaccount",
         name: routeName.MyAccount,
         component: MyAccount,
+        isRequiredAuth: true,
+    },
+    {
+        path: "/checkout",
+        name: routeName.Checkout,
+        component: Checkout,
         isRequiredAuth: true,
     },
 ];
