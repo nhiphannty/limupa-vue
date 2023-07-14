@@ -8,7 +8,8 @@
                         <div class="product-details-left">
                             <div class="product-details-images slider-navigation-1">
                                 <div class="lg-image">
-                                    <a class="popup-img venobox vbox-item" :href="product.image" target="_blank" data-gall="myGallery">
+                                    <a class="popup-img venobox vbox-item" :href="product.image" target="_blank"
+                                        data-gall="myGallery">
                                         <img :src="product.image" alt="product image">
                                     </a>
                                 </div>
@@ -34,7 +35,7 @@
                                     </ul>
                                 </div>
                                 <div class="price-box pt-20">
-                                    <span class="new-price new-price-2">${{ product.price }}</span>
+                                    <span class="new-price new-price-2">£{{ product.price }}</span>
                                 </div>
                                 <div class="product-desc">
                                     <p>
@@ -55,7 +56,9 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <button class="add-to-cart" type="submit">Add to cart</button>
+                                        <button class="add-to-cart" type="submit"
+                                            @click.prevent="addToCart(product.id, parseInt(quantity.toString()))">Add to
+                                            cart</button>
                                     </form>
                                 </div>
                                 <div class="product-additional-info pt-25">
@@ -232,14 +235,16 @@ export default {
         const activeTab = ref(tabs[0].Key);
         const quantity = ref(1);
 
-        const router = useRoute();
-        const product = await useProduct(parseInt(router.params.id.toString()));
+        const route = useRoute();
+        const { getProduct, addToCart } = useProduct();
+        const product = await getProduct(parseInt(route.params.id.toString()));
 
         return {
             tabs,
             activeTab,
             quantity,
-            product
+            product,
+            addToCart
         }
     }
 }

@@ -1,7 +1,7 @@
 <template>
   <Suspense>
     <template #default>
-      <router-view />
+      <router-view :key="$route.fullPath" />
     </template>
     <template #fallback>
       <span>Loading...</span>

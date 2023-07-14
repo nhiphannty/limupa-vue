@@ -38,7 +38,7 @@
                                                                 10/7/2023 07:20 PM
                                                             </td>
                                                             <td class="li-product-price">
-                                                                <span class="amount">$230.39</span>
+                                                                <span class="amount">£230.39</span>
                                                             </td>
                                                             <td class="li-product-stock-status">
                                                                 <span class="in-stock">Delivering</span>
@@ -50,7 +50,7 @@
                                                                 27/6/2023 12:18 AM
                                                             </td>
                                                             <td class="li-product-price">
-                                                                <span class="amount">$17</span>
+                                                                <span class="amount">£17</span>
                                                             </td>
                                                             <td class="li-product-stock-status">
                                                                 <span class="out-stock">Cancelled</span>

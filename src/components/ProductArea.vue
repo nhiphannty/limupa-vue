@@ -54,7 +54,10 @@
                                                 </div>
                                                 <div class="add-actions">
                                                     <ul class="add-actions-link">
-                                                        <li class="add-cart active"><a href="#">Add to cart</a></li>
+                                                        <li class="add-cart active">
+                                                            <a @click.prevent="addToCart(product.Id, 1)">
+                                                                Add to cart</a>
+                                                        </li>
                                                         <li>
                                                             <a class="links-details" href="#">
                                                                 <font-awesome-icon :icon="['far', 'heart']" />
@@ -92,6 +95,7 @@ import { Carousel, Slide, Navigation } from 'vue3-carousel';
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import { routeName } from "../constants/routers";
 import Rating from "./Rating.vue";
+import useProduct from "../composables/useProduct";
 
 export interface ITab {
     Key: number,
@@ -104,4 +108,7 @@ const props = defineProps<{
 }>();
 
 const activeTab = ref(props.tabs[0].Key);
+
+const { addToCart } = useProduct();
+
 </script>

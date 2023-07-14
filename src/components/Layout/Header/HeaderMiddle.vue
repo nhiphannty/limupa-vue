@@ -37,43 +37,45 @@
                             <li class="hm-minicart">
                                 <div class="hm-minicart-trigger" @click="isShowMinicart = !isShowMinicart">
                                     <font-awesome-icon class="item-icon" :icon="['fas', 'basket-shopping']" />
-                                    <span class="item-text">£80.00
-                                        <span class="cart-item-count">2</span>
+                                    <span class="item-text">£{{ totalPrice }}
+                                        <span class="cart-item-count">{{ totalItems }}</span>
                                     </span>
                                     <font-awesome-icon class="item-angel-down" :icon="['fas', 'angle-down']" />
                                 </div>
                                 <span></span>
                                 <div class="minicart" v-if="isShowMinicart">
                                     <ul class="minicart-product-list">
-                                        <li>
-                                            <router-link :to="{ name: routeName.ProductCatalog, params: { id: 1 } }"
+                                        <li v-for="item in  cart " :key="item.Product.Id">
+                                            <router-link
+                                                :to="{ name: routeName.ProductCatalog, params: { id: item.Product.Id } }"
                                                 class="minicart-product-image">
-                                                <img src="../../../assets/images/product/small-size/6.jpg"
-                                                    alt="cart products">
+                                                <img :src="item.Product.Image" alt="cart products">
                                             </router-link>
                                             <div class="minicart-product-details">
                                                 <h6>
                                                     <router-link
-                                                        :to="{ name: routeName.ProductCatalog, params: { id: 1 } }">
-                                                        Aenean eu tristique
+                                                        :to="{ name: routeName.ProductCatalog, params: { id: item.Product.Id } }">
+                                                        {{ item.Product.Title }}
                                                     </router-link>
                                                 </h6>
-                                                <span>£40 x 1</span>
+                                                <span>£{{ item.Product.Price }} x {{ item.Quantity }}</span>
                                             </div>
-                                            <button class="close" title="Remove">
+                                            <button class="close" title="Remove"
+                                                @click="cartStore.removeCartItem(item.Product.Id)">
                                                 <font-awesome-icon icon="fa fa-close"></font-awesome-icon>
                                             </button>
                                         </li>
                                     </ul>
-                                    <p class="minicart-total">SUBTOTAL: <span>£80.00</span></p>
+                                    <p class="minicart-total">SUBTOTAL: <span>£{{ totalPrice }}</span></p>
                                     <div class="minicart-button">
                                         <router-link :to="{ name: routeName.ShoppingCart }"
                                             class="li-button li-button-fullwidth li-button-dark">
                                             <span>View Full Cart</span>
                                         </router-link>
-                                        <a href="#" class="li-button li-button-fullwidth">
+                                        <router-link :to="{ name: routeName.Checkout }"
+                                            class="li-button li-button-fullwidth">
                                             <span>Checkout</span>
-                                        </a>
+                                        </router-link>
                                     </div>
                                 </div>
                             </li>
@@ -86,8 +88,13 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
+import { computed, reactive, ref } from 'vue';
 import { routeName } from '../../../constants/routers';
+import { useCartStore } from '../../../stores/useCartStore';
 
 const isShowMinicart = ref(false);
+const cartStore = useCartStore();
+const totalItems = computed(() => cartStore.totalItems);
+const totalPrice = computed(() => cartStore.totalPrice);
+const cart = reactive(cartStore.cart);
 </script>
