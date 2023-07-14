@@ -1,6 +1,6 @@
 <template>
     <div class="col-sm-12 col-md-12 col-xs-12 col-lg-6 mb-30">
-        <form @submit.prevent="submit">
+        <form @submit.prevent="submitLogin">
             <div class="login-form">
                 <h4 class="login-title">Login</h4>
                 <div class="row">
@@ -27,14 +27,13 @@
     </div>
 </template>
 <script lang="ts">
-import { computed, reactive, ref } from 'vue';
+
 import Input from '../../components/Input.vue';
-import { useVuelidate } from '@vuelidate/core';
+import { useLogIn } from '../../composables/useLogIn';
 import { helpers, required } from '@vuelidate/validators';
-import CommonErrorMessages from "../../constants/CommonErrorMessages";
-import { routeName } from '../../constants/routers';
-import router from "../../constants/routers";
-import { useAuthStore } from "../../stores/useAuthStore.ts";
+import CommonErrorMessages from '../../constants/CommonErrorMessages';
+import useVuelidate from '@vuelidate/core';
+import { SetupContext, reactive, ref, computed } from 'vue';
 
 export default {
     components: {
@@ -42,56 +41,38 @@ export default {
     },
     props: ["isLoading"],
     emits: ["updateLoading"],
-    async setup(_, context) {
+    async setup(_, context: SetupContext) {
         const model = reactive({
             username: "",
             password: "",
         });
 
         const rules = computed(() => ({
-            username: { required: helpers.withMessage(CommonErrorMessages.Required("Username"), required) },
-            password: { required: helpers.withMessage(CommonErrorMessages.Required("Password"), required) }
-        }))
-
+            username: {
+                required: helpers.withMessage(CommonErrorMessages.Required("Username"), required),
+            },
+            password: {
+                required: helpers.withMessage(CommonErrorMessages.Required("Password"), required),
+            },
+        }));
         const v$ = useVuelidate(rules, model);
 
-        const authStore = useAuthStore();
+        const { submit } = useLogIn({ context });
+
         const isAuthenticated = ref();
         const redirectCountDown = ref(3);
-        const authenticateHandler = function () {
-            if (redirectCountDown.value > 0) {
-                setTimeout(() => {
-                    redirectCountDown.value--;
-                    authenticateHandler();
-                }, 1000);
-            } else {
-                router.push(authStore.returnUrl || { name: routeName.Home });
-            }
-        }
 
-        const submit = async function () {
-            context.emit("updateLoading", true);
-            const isFormCorrect = await v$.value.$validate();
-            if (!isFormCorrect) {
-                context.emit("updateLoading", false); return
-            };
-
-            await authStore.logIn(model.username, model.password);
-            isAuthenticated.value = authStore.user != null;
-            if (isAuthenticated.value === true) {
-                authenticateHandler();
-            } else {
-                context.emit("updateLoading", false);
-            }
+        const submitLogin = async () => {
+            isAuthenticated.value = await submit(await v$.value.$validate(), model.username, model.password, redirectCountDown);
         }
 
         return {
             model,
             v$,
-            submit,
+            submitLogin,
             isAuthenticated,
             redirectCountDown
         }
     }
 }
-</script>../../constants/CommonErrorMessages
+</script>

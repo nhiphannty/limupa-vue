@@ -1,6 +1,6 @@
 <template>
     <div class="col-sm-12 col-md-12 col-lg-6 col-xs-12">
-        <form @submit.prevent="submit">
+        <form @submit.prevent="submitRegister">
             <div class="login-form">
                 <h4 class="login-title">Register</h4>
                 <div class="row">
@@ -34,13 +34,12 @@
     </div>
 </template>
 <script lang="ts">
-import { computed, reactive, ref } from 'vue';
+import { computed, reactive, ref, SetupContext } from 'vue';
 import Input from '../../components/Input.vue';
 import { useVuelidate } from '@vuelidate/core';
 import { helpers, required, sameAs } from '@vuelidate/validators';
 import CommonErrorMessages from "../../constants/CommonErrorMessages";
-import router, { routeName } from '../../constants/routers';
-import { useAuthStore } from '../../stores/useAuthStore';
+import { useRegister } from "../../composables/useRegister.ts";
 
 export default {
     components: {
@@ -48,7 +47,7 @@ export default {
     },
     props: ["isLoading"],
     emits: ["updateLoading"],
-    async setup(_, context) {
+    async setup(_, context: SetupContext) {
         const model = reactive({
             firstName: "",
             lastName: "",
@@ -68,40 +67,25 @@ export default {
 
         const v$ = useVuelidate(rules, model);
 
-        const authStore = useAuthStore();
+        const { submit } = useRegister({ context });
+
         const isAuthenticated = ref();
         const redirectCountDown = ref(3);
-        const authenticateHandler = function () {
-            if (redirectCountDown.value > 0) {
-                setTimeout(() => {
-                    redirectCountDown.value--;
-                    authenticateHandler();
-                }, 1000);
-            } else {
-                router.push({ name: routeName.Home })
-            }
-        }
 
-        const submit = async function () {
-            context.emit("updateLoading", true);
-            const isFormCorrect = await v$.value.$validate();
-            if (!isFormCorrect) {
-                context.emit("updateLoading", false); return
-            };
-
-            await authStore.register(model.firstName, model.lastName, model.username, model.password);
-            isAuthenticated.value = authStore.user != null;
-            if (isAuthenticated.value === true) {
-                authenticateHandler();
-            } else {
-                context.emit("updateLoading", false);
-            }
+        const submitRegister = async () => {
+            isAuthenticated.value = await submit(
+                await v$.value.$validate(),
+                model.firstName,
+                model.lastName,
+                model.username,
+                model.password,
+                redirectCountDown);
         }
 
         return {
             model,
             v$,
-            submit,
+            submitRegister,
             isAuthenticated,
             redirectCountDown
         }
