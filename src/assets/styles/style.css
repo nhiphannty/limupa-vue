@@ -2505,6 +2505,7 @@ textarea:focus {
 .add-actions-link li:hover a,
 .add-actions-link li.add-cart:hover a {
     color: #242424;
+    cursor: pointer;
 }
 .add-actions-link li.add-cart > a {
     color: #a4a4a4;
@@ -2611,6 +2612,8 @@ textarea:focus {
 }
 .product-image {
     position: relative;
+    text-align: center;
+    height: 250px;
 }
 .section-title-3 > h2 {
     background: #ffffff none repeat scroll 0 0;
