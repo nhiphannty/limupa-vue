@@ -19,13 +19,12 @@
                     <div class="row">
                         <div class="product-active">
                             <carousel :items-to-show="5" :snap-align="'start'" :items-to-scroll="3">
-                                <slide v-for="product in tab.Products" :key="product.Id">
+                                <slide v-for="product in tab.Products" :key="product.id">
                                     <div class="col-lg-12 product-bottom-padding">
                                         <div class="single-product-wrap">
                                             <div class="product-image">
-                                                <router-link
-                                                    :to="{ name: routeName.Product, params: { id: product.Id } }">
-                                                    <img :src="product.Image" alt="Li's Product Image">
+                                                <router-link :to="{ name: routeName.Product, params: { id: product.id } }">
+                                                    <img class="" :src="product.image" alt="Li's Product Image">
                                                 </router-link>
                                                 <span class="sticker">New</span>
                                             </div>
@@ -33,30 +32,30 @@
                                                 <div class="product_desc_info">
                                                     <div class="product-review">
                                                         <h5 class="manufacturer">
-                                                            <a href="#">{{ product.Manufacturer }}</a>
+                                                            <a href="#">{{ product.category }}</a>
                                                         </h5>
                                                         <div class="rating-box">
                                                             <ul class="rating">
-                                                                <Rating :rating="product.Rating ?? 0" />
+                                                                <Rating :rating="product.rating.rate" />
                                                             </ul>
                                                         </div>
                                                     </div>
                                                     <h4>
                                                         <router-link
-                                                            :to="{ name: routeName.Product, params: { id: product.Id } }"
+                                                            :to="{ name: routeName.Product, params: { id: product.id } }"
                                                             class="product_name">
-                                                            {{ product.Name }}
+                                                            {{ product.title }}
                                                         </router-link>
                                                     </h4>
                                                     <div class="price-box">
-                                                        <span class="new-price">${{ product.Price }}</span>
+                                                        <span class="new-price">${{ product.price }}</span>
                                                     </div>
                                                 </div>
                                                 <div class="add-actions">
                                                     <ul class="add-actions-link">
                                                         <li class="add-cart active">
                                                             <a
-                                                                @click.prevent="addToCart(product.Id, 1, product.Name, product.Image, product.Price)">
+                                                                @click.prevent="addToCart(product.id, 1, product.title, product.image, product.price)">
                                                                 Add to cart</a>
                                                         </li>
                                                         <li>
@@ -90,19 +89,13 @@
 
 <script setup lang="ts">
 import { ref } from "vue";
-import IProduct from "../interfaces/IProduct";
+import ITab from "../interfaces/ITab";
 import 'vue3-carousel/dist/carousel.css';
 import { Carousel, Slide, Navigation } from 'vue3-carousel';
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import { routeName } from "../constants/routers";
 import Rating from "./Rating.vue";
 import useProduct from "../composables/useProduct";
-
-export interface ITab {
-    Key: number,
-    Title: string
-    Products: IProduct[]
-}
 
 const props = defineProps<{
     tabs: ITab[]

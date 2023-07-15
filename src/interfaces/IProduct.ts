@@ -1,3 +1,5 @@
+import { Sort } from "../constants/APIInfomation";
+
 export default interface IProduct {
     Id: number;
     Name: string;
@@ -18,4 +20,9 @@ export interface IProductFakeStore {
         count: number;
         rate: number;
     };
+}
+
+export interface IProductsAPIParams {
+    Limit?: number;
+    Sort?: Sort;
 }
