@@ -41,11 +41,11 @@ export const useAuthStore = defineStore({
                 this.user = user;
             }
         },
-        logOut() {
+        logOut(route?: string) {
             this.user = null;
             this.returnUrl = null;
             localStorage.removeItem(LocalStorageNames.User);
-            router.push({ name: routeName.Home });
+            router.push({ name: route ? route : routeName.Home });
         },
         async register(firstName: string, lastName: string, username: string, password: string) {
             const { response, error, fetchData } = useFetch(APIs.Auth.Register, {
@@ -64,11 +64,28 @@ export const useAuthStore = defineStore({
 
             const user = reactive(response.value as IUser);
             user.Username = username;
+            user.Name = {
+                FirstName: firstName,
+                LastName: lastName,
+            };
 
             if (!error.value.isError) {
                 localStorage.setItem(LocalStorageNames.User, JSON.stringify(user));
                 this.user = user;
             }
+        },
+        update(id: number, firstName: string, lastName: string, username: string): boolean {
+            const updatedUser: IUser = {
+                Id: id,
+                Username: username,
+                Name: {
+                    FirstName: firstName,
+                    LastName: lastName,
+                },
+            };
+
+            localStorage.setItem(LocalStorageNames.User, JSON.stringify(updatedUser));
+            return true;
         },
     },
 });

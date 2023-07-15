@@ -4,7 +4,7 @@ import Shop from "../pages/Shop.vue";
 import Product from "../pages/Product.vue";
 import ShoppingCart from "../pages/ShoppingCart.vue";
 import LoginRegister from "../pages/LoginRegister/LoginRegister.vue";
-import MyAccount from "../pages/MyAccount.vue";
+import MyAccount from "../pages/MyAccount/MyAccount.vue";
 import Checkout from "../pages/Checkout.vue";
 import { useAuthStore } from "../stores/useAuthStore";
 

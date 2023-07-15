@@ -1132,6 +1132,10 @@ textarea:focus {
     right: 15px;
     top: 5px;
     z-index: 99;
+    padding: 0;
+    background-color: transparent;
+    border: 0;
+    line-height: 1;
 }
 .modal-wrapper .close:hover {
     color: #fed700;

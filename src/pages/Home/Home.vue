@@ -15,7 +15,9 @@
                                                 <h2>{{ slide.name }}</h2>
                                                 <h3>Starting at <span>${{ slide.price }}</span></h3>
                                                 <div class="default-btn slide-btn">
-                                                    <a class="links" href="#">Shopping Now</a>
+                                                    <router-link class="links" :to="{ name: routeName.Shop }">
+                                                        Shopping Now
+                                                    </router-link>
                                                 </div>
                                             </div>
                                         </div>
@@ -96,6 +98,7 @@ import LaptopProducts from './LaptopProducts.vue';
 import JeweleryProducts from './JeweleryProducts.vue';
 import TrendingProducts from './TrendingProducts.vue';
 import Bestsellers from './Bestsellers.vue';
+import { routeName } from '../../constants/routers';
 
 const sliders = [
     {
