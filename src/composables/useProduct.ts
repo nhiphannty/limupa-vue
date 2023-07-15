@@ -12,9 +12,15 @@ export default function () {
         return product;
     };
 
-    const addToCart = async function (id: number, quantity: number) {
+    const addToCart = function (
+        id: number,
+        quantity: number,
+        title: string,
+        image: string,
+        price: number
+    ) {
         const cartStore = useCartStore();
-        await cartStore.addCartItem(id, parseInt(quantity.toString()));
+        cartStore.addCartItem(id, parseInt(quantity.toString()), title, image, price);
     };
 
     return { getProduct, addToCart };

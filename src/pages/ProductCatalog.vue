@@ -57,8 +57,8 @@
                                             </div>
                                         </div>
                                         <button class="add-to-cart" type="submit"
-                                            @click.prevent="addToCart(product.id, parseInt(quantity.toString()))">Add to
-                                            cart</button>
+                                            @click.prevent="addToCart(product.id, parseInt(quantity.toString()), product.title, product.image, product.price)">
+                                            Add to cart</button>
                                     </form>
                                 </div>
                                 <div class="product-additional-info pt-25">

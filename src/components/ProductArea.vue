@@ -55,7 +55,8 @@
                                                 <div class="add-actions">
                                                     <ul class="add-actions-link">
                                                         <li class="add-cart active">
-                                                            <a @click.prevent="addToCart(product.Id, 1)">
+                                                            <a
+                                                                @click.prevent="addToCart(product.Id, 1, product.Name, product.Image, product.Price)">
                                                                 Add to cart</a>
                                                         </li>
                                                         <li>
