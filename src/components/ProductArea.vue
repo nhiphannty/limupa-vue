@@ -24,7 +24,7 @@
                                         <div class="single-product-wrap">
                                             <div class="product-image">
                                                 <router-link
-                                                    :to="{ name: routeName.ProductCatalog, params: { id: product.Id } }">
+                                                    :to="{ name: routeName.Product, params: { id: product.Id } }">
                                                     <img :src="product.Image" alt="Li's Product Image">
                                                 </router-link>
                                                 <span class="sticker">New</span>
@@ -43,7 +43,7 @@
                                                     </div>
                                                     <h4>
                                                         <router-link
-                                                            :to="{ name: routeName.ProductCatalog, params: { id: product.Id } }"
+                                                            :to="{ name: routeName.Product, params: { id: product.Id } }"
                                                             class="product_name">
                                                             {{ product.Name }}
                                                         </router-link>

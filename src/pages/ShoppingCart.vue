@@ -32,7 +32,7 @@
                                             </td>
                                             <td class="li-product-name">
                                                 <router-link
-                                                    :to="{ name: routeName.ProductCatalog, params: { id: item.Product.Id } }">
+                                                    :to="{ name: routeName.Product, params: { id: item.Product.Id } }">
                                                     {{ item.Product.Title }}
                                                 </router-link>
                                             </td>

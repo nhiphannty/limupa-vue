@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
 import Home from "../pages/Home.vue";
 import Shop from "../pages/Shop.vue";
-import ProductCatalog from "../pages/ProductCatalog.vue";
+import Product from "../pages/Product.vue";
 import ShoppingCart from "../pages/ShoppingCart.vue";
 import LoginRegister from "../pages/LoginRegister/LoginRegister.vue";
 import MyAccount from "../pages/MyAccount.vue";
@@ -11,7 +11,7 @@ import { useAuthStore } from "../stores/useAuthStore";
 export const routeName = {
     Home: "Home",
     Shop: "Shop",
-    ProductCatalog: "Product Catalog",
+    Product: "Product",
     ShoppingCart: "Shopping Cart",
     LoginRegister: "Login | Register",
     MyAccount: "My Account",
@@ -33,8 +33,8 @@ const routes = [
     },
     {
         path: "/product/:id",
-        name: routeName.ProductCatalog,
-        component: ProductCatalog,
+        name: routeName.Product,
+        component: Product,
         isRequiredAuth: false,
     },
     {

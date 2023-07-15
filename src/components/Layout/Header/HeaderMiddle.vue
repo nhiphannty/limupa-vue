@@ -47,14 +47,14 @@
                                     <ul class="minicart-product-list">
                                         <li v-for="item in  cart " :key="item.Product.Id">
                                             <router-link
-                                                :to="{ name: routeName.ProductCatalog, params: { id: item.Product.Id } }"
+                                                :to="{ name: routeName.Product, params: { id: item.Product.Id } }"
                                                 class="minicart-product-image">
                                                 <img :src="item.Product.Image" alt="cart products">
                                             </router-link>
                                             <div class="minicart-product-details">
                                                 <h6>
                                                     <router-link
-                                                        :to="{ name: routeName.ProductCatalog, params: { id: item.Product.Id } }">
+                                                        :to="{ name: routeName.Product, params: { id: item.Product.Id } }">
                                                         {{ item.Product.Title }}
                                                     </router-link>
                                                 </h6>
