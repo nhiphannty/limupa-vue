@@ -4,7 +4,7 @@ import ICoupon from "./ICoupon";
 
 export default interface IOrder {
     Id: string;
-    Date: Date;
+    Date: string;
     BillingAddress: IAddress;
     ShippingAddress?: IAddress;
     Cart: ICart[];

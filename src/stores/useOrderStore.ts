@@ -23,6 +23,8 @@ export const useOrderStore = defineStore({
             const { orders } = useAuthStore();
             orders?.push(order);
             localStorage.setItem(LocalStorageNames.Orders, JSON.stringify(orders));
+            const { $reset } = useCartStore();
+            $reset();
             return { IsSuccess: true, NewOrderId: order.Id };
         },
         setTotalOrder(value: string) {

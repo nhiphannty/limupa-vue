@@ -52,8 +52,17 @@ import Layout from '../../components/Layout/Layout.vue';
 import { useAuthStore } from '../../stores/useAuthStore';
 import AccountInformation from './AccountInformation.vue';
 import YourOrders from './YourOrders.vue';
+import { useRouter } from 'vue-router';
+import { routeName } from '../../constants/routers';
 
 const authStore = useAuthStore();
 const activeTab = ref(1);
+
+const router = useRouter();
+const previousRoute = router.resolve({ path: `${router.options.history.state.back?.toString()}` })
+
+if (previousRoute.name === routeName.PlaceOrderSuccessfully) {
+    activeTab.value = 2;
+}
 
 </script>

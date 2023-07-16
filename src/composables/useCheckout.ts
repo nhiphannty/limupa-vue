@@ -68,7 +68,7 @@ export default function () {
 
         const order: IOrder = {
             Id: uuidv4(),
-            Date: new Date(),
+            Date: new Date().toLocaleString(),
             BillingAddress: address,
             ShippingAddress: differentAddress,
             Cart: items,

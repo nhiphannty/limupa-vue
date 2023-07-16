@@ -64,23 +64,11 @@
                                 </table>
                             </div>
                             <div class="row">
-                                <div class="col-12">
-                                    <div class="coupon-all">
-                                        <div class="coupon">
-                                            <input id="coupon_code" class="input-text" name="coupon_code" value=""
-                                                placeholder="Coupon code" type="text">
-                                            <input class="button" name="apply_coupon" value="Apply coupon" type="submit">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
                                 <div class="col-md-5 ml-auto">
                                     <div class="cart-page-total">
                                         <h2>Cart totals</h2>
                                         <ul>
                                             <li>Subtotal <span>£{{ cartStore.totalPrice }}</span></li>
-                                            <li>Total <span>£{{ cartStore.totalPrice }}</span></li>
                                         </ul>
                                         <router-link :to="{ name: routeName.Checkout }">Proceed to checkout</router-link>
                                     </div>

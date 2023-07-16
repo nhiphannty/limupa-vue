@@ -80,5 +80,13 @@ export const useCartStore = defineStore({
             this.totalPrice = newTotalPrice.toFixed(2);
             this.setLocalStorage();
         },
+        $reset() {
+            this.cart = [];
+            this.totalItems = 0;
+            this.totalPrice = "0";
+            localStorage.removeItem(LocalStorageNames.Cart);
+            localStorage.removeItem(LocalStorageNames.TotalCartItems);
+            localStorage.removeItem(LocalStorageNames.TotalCartPrice);
+        },
     },
 });
