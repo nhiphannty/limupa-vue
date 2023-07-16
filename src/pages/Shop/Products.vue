@@ -40,18 +40,6 @@
                                                     @click.prevent="addToCart(prod.id, 1, prod.title, prod.image, prod.price)">
                                                     Add to cart</a>
                                             </li>
-                                            <li>
-                                                <a class="links-details" href="#">
-                                                    <font-awesome-icon :icon="['far', 'heart']" />
-                                                </a>
-                                            </li>
-
-                                            <li>
-                                                <a href="#" title="quick view" class="quick-view-btn" data-toggle="modal"
-                                                    data-target="#exampleModalCenter">
-                                                    <font-awesome-icon :icon="['far', 'eye']" />
-                                                </a>
-                                            </li>
                                         </ul>
                                     </div>
                                 </div>
