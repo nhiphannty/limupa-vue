@@ -48,7 +48,9 @@ export const useAuthStore = defineStore({
         logOut(route?: string) {
             this.user = null;
             this.returnUrl = null;
+            this.orders = [];
             localStorage.removeItem(LocalStorageNames.User);
+            localStorage.removeItem(LocalStorageNames.Orders);
             router.push({ name: route ? route : routeName.Home });
         },
         async register(firstName: string, lastName: string, username: string, password: string) {
