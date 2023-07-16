@@ -1,7 +1,15 @@
 <template>
     <Layout>
         <BreadCrumb />
-        <div class="checkout-area pt-60 pb-30">
+        <div v-if="cart.length == 0">
+            <div class="container mb-60">
+                <div class="your-order">
+                    <h3>Your cart is empty</h3>
+                    <h4><router-link :to="{ name: routeName.Shop }">Continue Shopping</router-link></h4>
+                </div>
+            </div>
+        </div>
+        <div class="checkout-area pt-60 pb-30" v-else>
             <div class="container">
                 <div class="row">
                     <div class="col-12">
@@ -40,7 +48,7 @@
                     <div class="col-lg-6 col-12">
                         <YourOrder :payments="payments" :isLoading="isLoading" @setPayment="setPayment"
                             @placeOrder="submit" />
-                        <h5 class="error-msg" v-if="isSuccess === false">Something went wrong. Please try again.</h5>   
+                        <h5 class="error-msg" v-if="isSuccess === false">Something went wrong. Please try again.</h5>
                     </div>
                 </div>
             </div>
@@ -57,6 +65,7 @@ import DifferentAddress from './DifferentAddress.vue'
 import useVuelidate from '@vuelidate/core';
 import useCheckout from '../../composables/useCheckout'
 import router, { routeName } from '../../constants/routers';
+import { useCartStore } from '../../stores/useCartStore';
 
 export default {
     components: {
@@ -87,6 +96,8 @@ export default {
             isLoading.value = false;
         }
 
+        const { cart } = useCartStore();
+
         return {
             isShowCoupon,
             inputCoupon,
@@ -95,7 +106,9 @@ export default {
             payments,
             setPayment,
             submit,
-            isSuccess
+            isSuccess,
+            cart,
+            routeName
         }
     }
 }
