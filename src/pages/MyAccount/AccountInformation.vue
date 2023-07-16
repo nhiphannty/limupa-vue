@@ -2,28 +2,32 @@
     <form @submit.prevent="updateAccount">
         <div class="login-form">
             <div class="row">
-                <Input :label="'First name'" :input-type="'text'" :place-holder="'First name'" v-model="model.FirstName" />
-                <Input :label="'Last name'" :input-type="'text'" :place-holder="'Last name'" v-model="model.LastName" />
-                <Input :label="'Username'" :is-full-length-input="true" :is-required="true" :input-type="'text'"
-                    :place-holder="'Username'" v-model="model.Username" />
-                <div class="input-errors" v-for="error of v$.Username.$errors" :key="error.$uid">
-                    import Modal from '../../components/Modal.vue';
-                    import Modal from '../../components/Modal.vue';
-                    <div class="error-msg">{{ error.$message }}</div>
+                <div class="col-md-6 col-6 mb-20">
+                    <Input :label="'First name'" :input-type="'text'" :place-holder="'First name'"
+                        v-model="model.FirstName" />
                 </div>
-                <Input :label="'Password'" :input-type="'password'" :place-holder="'Password'" v-model="model.Password" />
-                <Input :label="'Confirm password'" :input-type="'password'" :place-holder="'Confirm password'"
-                    v-model="model.ConfirmPassword" />
-                <div class="input-errors" v-for="error of v$.ConfirmPassword.$errors" :key="error.$uid">
-                    <div class="error-msg">{{ error.$message }}</div>
+                <div class="col-md-6 col-6 mb-20">
+                    <Input :label="'Last name'" :place-holder="'Last name'" v-model="model.LastName" />
+                </div>
+                <div class="col-md-12 col-12 mb-20">
+                    <Input :label="'Username'" :is-required="true" :place-holder="'Username'" v-model="model.Username"
+                        :errors="v$.Username.$errors" />
+                </div>
+                <div class="col-md-6 col-6 mb-20">
+                    <Input :label="'Password'" :input-type="'password'" :place-holder="'Password'"
+                        v-model="model.Password" />
+                </div>
+                <div class="col-md-6 col-6 mb-20">
+                    <Input :label="'Confirm password'" :input-type="'password'" :place-holder="'Confirm password'"
+                        v-model="model.ConfirmPassword" :errors="v$.ConfirmPassword.$errors" />
                 </div>
                 <div class="error-msg" v-if="isSuccess === false">Update unsuccessfully. Please try again.</div>
                 <div class="" v-if="isSuccess === true">Update successfully.</div>
                 <div class="col-md-12">
                     <button class="register-button mt-0" :disabled="isLoading">Update</button>
                 </div>
-                <Modal v-if="isSuccess && isPasswordChanged"
-                    :content="'You need to log in again after changing password'" @close="logOut(routeName.LoginRegister)" />
+                <Modal v-if="isSuccess && isPasswordChanged" :content="'You need to log in again after changing password'"
+                    @close="logOut(routeName.LoginRegister)" />
             </div>
         </div>
     </form>
