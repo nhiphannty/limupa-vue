@@ -4,23 +4,24 @@
             <div class="login-form">
                 <h4 class="login-title">Register</h4>
                 <div class="row">
-                    <Input :label="'First Name'" :input-type="'text'" :place-holder="'First Name'"
-                        v-model="model.firstName" />
-                    <Input :label="'Last Name'" :input-type="'text'" :place-holder="'Last Name'" v-model="model.lastName" />
-                    <Input :label="'Username'" :is-full-length-input="true" :is-required="true" :input-type="'text'"
-                        :place-holder="'Username'" v-model="model.username" />
-                    <div class="input-errors" v-for="error of v$.username.$errors" :key="error.$uid">
-                        <div class="error-msg">{{ error.$message }}</div>
+                    <div class="col-md-6 col-6 mb-20">
+                        <Input :label="'First Name'" :place-holder="'First Name'" v-model="model.firstName" />
                     </div>
-                    <Input :label="'Password'" :is-required="true" :input-type="'password'" :place-holder="'Password'"
-                        v-model="model.password" />
-                    <Input :label="'Confirm password'" :is-required="true" :input-type="'password'"
-                        :place-holder="'Confirm password'" v-model="model.confirmPassword" />
-                    <div class="input-errors" v-for="error of v$.password.$errors" :key="error.$uid">
-                        <div class="error-msg">{{ error.$message }}</div>
+                    <div class="col-md-6 col-6 mb-20">
+                        <Input :label="'Last Name'" :place-holder="'Last Name'" v-model="model.lastName" />
                     </div>
-                    <div class="input-errors" v-for="error of v$.confirmPassword.$errors" :key="error.$uid">
-                        <div class="error-msg">{{ error.$message }}</div>
+                    <div class="col-md-12 col-12 mb-20">
+                        <Input :label="'Username'" :is-required="true" :place-holder="'Username'" v-model="model.username"
+                            :errors="v$.username.$errors" />
+                    </div>
+                    <div class="col-md-6 col-6 mb-20">
+                        <Input :label="'Password'" :is-required="true" :input-type="'password'" :place-holder="'Password'"
+                            v-model="model.password" :errors="v$.password.$errors" />
+                    </div>
+                    <div class="col-md-6 col-6 mb-20">
+                        <Input :label="'Confirm password'" :is-required="true" :input-type="'password'"
+                            :place-holder="'Confirm password'" v-model="model.confirmPassword"
+                            :errors="v$.confirmPassword.$errors" />
                     </div>
                     <div class="col-12">
                         <button class="register-button mt-0" :disabled="$props.isLoading">Register</button>

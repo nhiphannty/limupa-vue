@@ -3,6 +3,7 @@ const LocalStorageNames = {
     Cart: "Cart",
     TotalCartItems: "TotalCartItems",
     TotalCartPrice: "TotalCartPrice",
+    Orders: "Orders"
 };
 
 export default LocalStorageNames;

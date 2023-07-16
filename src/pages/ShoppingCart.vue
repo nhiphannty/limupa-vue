@@ -82,7 +82,7 @@
                                             <li>Subtotal <span>£{{ cartStore.totalPrice }}</span></li>
                                             <li>Total <span>£{{ cartStore.totalPrice }}</span></li>
                                         </ul>
-                                        <a href="#">Proceed to checkout</a>
+                                        <router-link :to="{ name: routeName.Checkout }">Proceed to checkout</router-link>
                                     </div>
                                 </div>
                             </div>

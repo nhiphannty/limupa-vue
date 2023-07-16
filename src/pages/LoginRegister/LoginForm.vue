@@ -4,15 +4,13 @@
             <div class="login-form">
                 <h4 class="login-title">Login</h4>
                 <div class="row">
-                    <Input :label="'Username'" :is-full-length-input="true" :is-required="true" :input-type="'text'"
-                        :place-holder="'Username'" v-model="model.username" />
-                    <div class="input-errors" v-for="error of v$.username.$errors" :key="error.$uid">
-                        <div class="error-msg">{{ error.$message }}</div>
+                    <div class="col-md-12 col-12 mb-20">
+                        <Input :label="'Username'" :is-required="true" :place-holder="'Username'" v-model="model.username"
+                            :errors="v$.username.$errors" />
                     </div>
-                    <Input :label="'Password'" :is-full-length-input="true" :is-required="true" :input-type="'password'"
-                        :place-holder="'Password'" v-model="model.password" />
-                    <div class="input-errors" v-for="error of v$.password.$errors" :key="error.$uid">
-                        <div class="error-msg">{{ error.$message }}</div>
+                    <div class="col-md-12 col-12 mb-20">
+                        <Input :label="'Password'" :is-required="true" :input-type="'password'" :place-holder="'Password'"
+                            v-model="model.password" :errors="v$.password.$errors" />
                     </div>
                     <div class="error-msg" v-if="isAuthenticated == false">Username or password is not correct</div>
                     <div class="col-md-12">

@@ -5,7 +5,8 @@ import Product from "../pages/Product.vue";
 import ShoppingCart from "../pages/ShoppingCart.vue";
 import LoginRegister from "../pages/LoginRegister/LoginRegister.vue";
 import MyAccount from "../pages/MyAccount/MyAccount.vue";
-import Checkout from "../pages/Checkout.vue";
+import Checkout from "../pages/Checkout/Checkout.vue";
+import PlaceOrderSuccessfully from "../pages/PlaceOrderSuccessfully.vue";
 import { useAuthStore } from "../stores/useAuthStore";
 
 export const routeName = {
@@ -16,6 +17,7 @@ export const routeName = {
     LoginRegister: "Login | Register",
     MyAccount: "My Account",
     Checkout: "Checkout",
+    PlaceOrderSuccessfully: "Place Order Successfully",
 };
 
 const routes = [
@@ -59,6 +61,12 @@ const routes = [
         path: "/checkout",
         name: routeName.Checkout,
         component: Checkout,
+        isRequiredAuth: true,
+    },
+    {
+        path: "/placeordersuccessfully/:orderId",
+        name: routeName.PlaceOrderSuccessfully,
+        component: PlaceOrderSuccessfully,
         isRequiredAuth: true,
     },
 ];

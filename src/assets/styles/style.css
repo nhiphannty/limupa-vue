@@ -3750,11 +3750,9 @@ li.right-menu .cat-mega-menu-2 > li {
     width: auto;
     text-transform: none;
 }
-.coupon-accordion h3::before {
+.coupon-accordion-icon {
     color: #fed700;
-    content: "\f133";
     display: inline-block;
-    font-family: "fontawesome";
     left: 24px;
     position: absolute;
     top: 16px;
@@ -5652,6 +5650,40 @@ span.required {
 
 .cart-item-image {
     max-width: 150px;
+}
+
+.slide-down-enter-active {
+    -moz-transition-duration: 0.3s;
+    -webkit-transition-duration: 0.3s;
+    -o-transition-duration: 0.3s;
+    transition-duration: 0.3s;
+    -moz-transition-timing-function: ease-in;
+    -webkit-transition-timing-function: ease-in;
+    -o-transition-timing-function: ease-in;
+    transition-timing-function: ease-in;
+}
+
+.slide-down-leave-active {
+    -moz-transition-duration: 0.3s;
+    -webkit-transition-duration: 0.3s;
+    -o-transition-duration: 0.3s;
+    transition-duration: 0.3s;
+    -moz-transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+    -webkit-transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+    -o-transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+    transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+}
+
+.slide-down-enter-to,
+.slide-down-leave {
+    max-height: 100px;
+    overflow: hidden;
+}
+
+.slide-down-enter,
+.slide-down-leave-to {
+    overflow: hidden;
+    max-height: 0;
 }
 
 /*----------------------------------------------------------------------------------------------------*/
